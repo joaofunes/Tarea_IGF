@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+	
+	<!-- Definition for hibernateUtil bean -->
+
+	
+	<bean id="hibernateUtil" class="sv.edu.ues.igf115.utilidades.HibernateUtils" />
+	<!-- Definicion de bean para DAO y Servicio utilizados por la Clase Departamento -->
+	
+	<bean id="TbTipoAtributoDao" class="sv.edu.ues.igf115.dao.TbTipoAtributoDao">
+		<constructor-arg ref="hibernateUtil" />
+	</bean>
+	
+	<bean id="TbTipoAtributoController" class="sv.edu.ues.igf115.controller.TbTipoAtributoController">
+		<constructor-arg ref="TbTipoAtributoDao" />
+	</bean>
+
+    <bean id="AsMetodoPKDao" class="sv.edu.ues.igf115.dao.AsMetodoPKDao">
+		<constructor-arg ref="hibernateUtil" />
+	</bean>
+	
+	<bean id="AsMetodoPKController" class="sv.edu.ues.igf115.controller.AsMetodoPKController">
+		<constructor-arg ref="AsMetodoPKDao" />
+	</bean>
+
+	<bean id="AsAtributoDao" class="sv.edu.ues.igf115.dao.AsAtributoDao">
+		<constructor-arg ref="hibernateUtil" />
+	</bean>
+	
+	<bean id="AsAtributoController" class="sv.edu.ues.igf115.controller.AsAtributoController">
+		<constructor-arg ref="AsAtributoDao" />
+		<constructor-arg ref="AsClaseDao" />
+		<constructor-arg ref="TbTipoAtributoDao" />
+		<constructor-arg ref="AsMetodoDao" />
+	</bean>
+	
+	<bean id="AsClaseDao" class="sv.edu.ues.igf115.dao.AsClaseDao">
+		<constructor-arg ref="hibernateUtil" />
+	</bean>
+	<bean id="AsClaseController" class="sv.edu.ues.igf115.controller.AsClaseController">
+		<constructor-arg ref="AsClaseDao" />
+	</bean>
+	
+	<bean id="AsMetodoDao" class="sv.edu.ues.igf115.dao.AsMetodoDao">
+		<constructor-arg ref="hibernateUtil" />
+	</bean>
+	<bean id="AsMetodoController" class="sv.edu.ues.igf115.controller.AsMetodoController">
+		<constructor-arg ref="AsMetodoDao" />
+		<constructor-arg ref="AsClaseDao" />
+		<constructor-arg ref="TbTipoMetodoDao" />
+		<constructor-arg ref="AsMetodoPKDao" />
+	</bean>
+	
+	
+	
+	
+	<bean id="TbTipoMetodoDao" class="sv.edu.ues.igf115.dao.TbTipoMetodoDao">
+		<constructor-arg ref="hibernateUtil" />
+	</bean>
+	<bean id="TbTipoMetodoController" class="sv.edu.ues.igf115.controller.TbTipoMetodoController">
+		<constructor-arg ref="TbTipoMetodoDao" />
+	</bean>
+	<bean id="daoAsInter" class="sv.edu.ues.igf115.dao.AsInterfaceDao">
+		<constructor-arg ref="hibernateUtil" />
+	</bean>
+	
+	<bean id="ctrlAsInter" class="sv.edu.ues.igf115.controller.CtrlAsInterface">
+		<constructor-arg ref="daoAsInter" />
+	</bean>
+	
+	<bean id="daoAsInterImplements" class="sv.edu.ues.igf115.dao.AsInterfaceImplementaDao">
+		<constructor-arg ref="hibernateUtil" />
+	</bean>
+	
+	<bean id="AsInterImplementsCtrol" class="sv.edu.ues.igf115.controller.AsInterfaceImplementaController">
+		<constructor-arg ref="daoAsInterImplements" />
+	</bean>
+		<bean id="daoDepto" class="sv.edu.ues.igf115.dao.TbTipoClaseDao">
+		<constructor-arg ref="hibernateUtil" />
+	</bean>
+	
+	<bean id="ctrlDepto" class="sv.edu.ues.igf115.controller.TbTipoClaseController">
+		<constructor-arg ref="daoDepto" />
+	</bean>
+	
+	<bean id="daoApli" class="sv.edu.ues.igf115.dao.TbAplicativoDao">
+		<constructor-arg ref="hibernateUtil" />
+	</bean>
+	
+	<bean id="ctrlApli" class="sv.edu.ues.igf115.controller.TbAplicativoController">
+		<constructor-arg ref="daoApli" />
+	</bean>
+	
+<!-- 	<bean id="AsClaseInterfaceDao" class="sv.edu.ues.igf115.dao.AsClaseInterfaceDao"> -->
+<!-- 		<constructor-arg ref="hibernateUtil" /> -->
+<!-- 	</bean> -->
+	
+<!-- 	<bean id="AsClaseInterfaceController" class="sv.edu.ues.igf115.controller.AsClaseInterfaceController"> -->
+<!-- 		<constructor-arg ref="AsClaseInterfaceDao" /> -->
+<!-- 		<constructor-arg ref="AsClaseDao" /> -->
+<!-- 		<constructor-arg ref="daoAsInter" /> -->
+<!-- 	</bean> -->
+	
+</beans>
