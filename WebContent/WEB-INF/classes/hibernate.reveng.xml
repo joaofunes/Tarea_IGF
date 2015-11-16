@@ -14,5 +14,6 @@
   <table-filter match-catalog="mydb" match-name="tb_tipo_clase"/>
   <table-filter match-catalog="mydb" match-name="tb_tipo_metodo"/>
   <table-filter match-catalog="mydb" match-name="AsMetodoPK"/>
+  <table-filter match-catalog="mydb" match-name="usuarios"/>
  
 </hibernate-reverse-engineering>

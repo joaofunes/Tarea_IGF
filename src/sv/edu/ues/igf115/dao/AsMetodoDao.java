@@ -101,12 +101,12 @@ public class AsMetodoDao {
 			return asMetodo;
 		}
 
-		public AsMetodo findByIdAsMetodo(Integer nombre) {
+		public AsMetodo findByIdAsMetodo(Integer cMetodo) {
 			sesion = sessionFactory.openSession();
 //			Query query = sesion.getNamedQuery("Departamentos.findByNombreDep");
 //			query.setParameter("nombreDep", nombre);
 			Query query = sesion.createQuery("Select u from AsMetodo u where u.asMetodoPK.cMetodo =:cMetodo");
-			query.setParameter("cMetodo", nombre);
+			query.setParameter("cMetodo", cMetodo);
 			AsMetodo asMetodo = (AsMetodo) query.uniqueResult();
 			sesion.close();
 			return asMetodo;

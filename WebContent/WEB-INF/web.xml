@@ -7,56 +7,9 @@
 	<welcome-file-list>
 	
 		<welcome-file>index.jsp</welcome-file>
-		<welcome-file>default.html</welcome-file>
-		<welcome-file>default.htm</welcome-file>
-		<welcome-file>default.jsp</welcome-file>
-	    <welcome-file>index.html</welcome-file>
-		<welcome-file>index.htm</welcome-file>
+		
 	</welcome-file-list>
-	
-	<servlet>
-		<servlet-name>AsAtributoController</servlet-name>
-		<servlet-class>sv.edu.ues.igf115.controller.AsAtributoController</servlet-class>
-	</servlet>
 
-	<servlet-mapping>
-		<servlet-name>AsAtributoController</servlet-name>
-		<url-pattern>/AsAtributoController</url-pattern>
-	</servlet-mapping>
-
-	<servlet>
-		<servlet-name>UserController</servlet-name>
-		<servlet-class>sv.edu.ues.igf115.controller.UserController</servlet-class>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>UserController</servlet-name>
-		<url-pattern>/UserController</url-pattern>
-	</servlet-mapping>
-    
-    
-    <servlet>
-		<servlet-name>TbTipoMetodoController</servlet-name>
-		<servlet-class>sv.edu.ues.igf115.controller.TbTipoMetodoController</servlet-class>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>TbTipoMetodoController</servlet-name>
-		<url-pattern>/TbTipoMetodoController</url-pattern>
-	</servlet-mapping>
-	
-	
-	
-    <servlet>
-		<servlet-name>AsMetodoController</servlet-name>
-		<servlet-class>sv.edu.ues.igf115.controller.AsMetodoController</servlet-class>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>AsMetodoController</servlet-name>
-		<url-pattern>/AsMetodoController</url-pattern>
-	</servlet-mapping>
-    
     <!--INICIA PARTE DE JOCKSUN -->
 	<servlet>
 		<servlet-name>TbTipoClaseController</servlet-name>
@@ -70,24 +23,30 @@
 	
 	<!--  FIN PARTE DE JOCKSUN -->
     
-    
-    <context-param>
+     <context-param>
 	<param-name>contextConfigLocation</param-name>
 	<param-value>/WEB-INF/classes/beans.xml</param-value>
 	</context-param>
 	
+   <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>/WEB-INF/classes/applicationContext-security.xml</param-value>
+	</context-param>
+	 
 	<listener>
-	    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 	
-	
-    <session-config>
-        <session-timeout>
-            30
-        </session-timeout>
-    </session-config>
-    <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
-    </welcome-file-list>
+<!-- 	<filter> -->
+<!-- 		<filter-name>springSecurityFilterChain</filter-name> -->
+<!-- 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy -->
+<!-- 		</filter-class> -->
+<!-- 	</filter> -->
+
+<!-- 	<filter-mapping> -->
+<!-- 		<filter-name>springSecurityFilterChain</filter-name> -->
+<!-- 		<url-pattern>/*</url-pattern> -->
+<!-- 	</filter-mapping> -->
+
 	
 </web-app>

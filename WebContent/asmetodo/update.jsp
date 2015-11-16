@@ -14,26 +14,35 @@ AsMetodoController asMetodoController=(AsMetodoController) context.getBean("AsMe
 String crear = request.getParameter("crear");
 
 String mensaje="";
-AsMetodo asMetodo = new AsMetodo();
-Integer id=null;
+AsMetodo asMet = new AsMetodo();
+AsMetodoPK asMetodoPK= new AsMetodoPK();
 Integer isd= null;
 
 	if (crear != null && "on".equals(crear)) {
 		
-		//traer entidades	
-		AsClase asclase=asMetodoController.daAsClaseEntidad(Integer.parseInt(request.getParameter("clase")));
-		TbTipoMetodo tbTipoMetodo=asMetodoController.daTbTipoMetodoEntidad(request.getParameter("tipoMetodo"));
 		
-		asMetodo.setCTipoMetodo(tbTipoMetodo);
-		asMetodo.setAsClase(asclase);
-		asMetodo.setBActivo(Integer.parseInt(request.getParameter("activo")));//1 ACtivo
-		asMetodo.setCUsuario(request.getParameter("usuario"));
-		asMetodo.setDMetodo(request.getParameter("descripcionMetodo"));
-		asMetodo.setDTipoRetorno(request.getParameter("descripcionTRetorno"));
-		asMetodo.setFIngreso(new Date());
-		asMetodo.setNParametros(Integer.parseInt(request.getParameter("parametro")));
+		asMet = asMetodoController.findByIdAsMetodo(Integer.parseInt(request.getParameter("codigoMetodo")));
+
+	
+
 		
-		boolean existe = asMetodoController.update(asMetodo);
+		asMetodoPK.setCClase(Integer.parseInt(request.getParameter("clase")));
+		asMetodoPK.setCMetodo(Integer.parseInt(request.getParameter("codigoMetodo")));		
+		asMet.setAsMetodoPK(asMetodoPK);
+		asMet.setBActivo(Integer.parseInt(request.getParameter("activo")));//1 ACtivo
+		asMet.setCUsuario(request.getParameter("usuario"));
+		asMet.setDMetodo(request.getParameter("descripcionMetodo"));
+		asMet.setDTipoRetorno(request.getParameter("descripcionTRetorno"));
+		asMet.setFIngreso(new Date());
+		asMet.setNParametros(Integer.parseInt(request.getParameter("parametro")));
+
+		AsClase asClase=asMetodoController.daAsClaseEntidad(Integer.parseInt(request.getParameter("clase")));
+		asMet.setAsClase(asClase);
+		
+		TbTipoMetodo tbTipoMetodo = asMetodoController.daTbTipoMetodoEntidad(request.getParameter("tipoMetodo"));
+		asMet.setCTipoMetodo(tbTipoMetodo);
+		
+		boolean existe = asMetodoController.update(asMet);
 		if (existe) {
 			response.sendRedirect("asmetodo.jsp");
 			mensaje = "Se creo el  departamento";
@@ -50,7 +59,8 @@ Integer isd= null;
 		request.setAttribute("lstTbTipoMetodo", lstTbTipoMetodo);
 		
 		isd =Integer.parseInt(request.getParameter("userId"));
-		request.setAttribute("AsMetodo", asMetodoController.daAsMetodoId(isd));
+		request.setAttribute("id",isd);
+		request.setAttribute("AsMetodo", asMetodoController.findByIdAsMetodo(isd));
 		
 	}
 %>
@@ -76,16 +86,16 @@ Integer isd= null;
 
 			
 			<div class="form-group">
-				<label for="codigoMetodo"> Codigo Metodo: <input
-					class="form-control" type="number" id="codigoMetodo" name="codigoMetodo" disabled="disabled"
-					value=<c:out value="${AsMetodo.cMetodo}" /> />
+				<label for="codigoMetodo"> Codigo Metodo: <input 
+					class="form-control"  id="codigoMetodo" name="codigoMetodo" readonly="readonly"
+					value=<c:out value="${AsMetodo.asMetodoPK.CMetodo}" /> />
 				</label>
 			</div>
 			
 			
 			<div class="form-group">
 				<label for="clase"> Codigo Clase: <select name='clase'>
-						<option value="${AsMetodo.cClase}" selected>${AsMetodo.cClase}</option>
+						<option value="${AsMetodo.asMetodoPK.CClase}" selected>${AsMetodo.asMetodoPK.CClase}</option>
 						<c:forEach items="${lstAsClase}" var="clas">
 							<option value="${clas.CClase}">${clas.CClase}</option>
 						</c:forEach>

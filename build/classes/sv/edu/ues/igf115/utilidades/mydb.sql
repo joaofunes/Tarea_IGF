@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 03-11-2015 a las 05:12:59
+-- Tiempo de generación: 16-11-2015 a las 06:20:05
 -- Versión del servidor: 5.5.24-log
 -- Versión de PHP: 5.4.3
 
@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `as_atributo` (
 --
 
 INSERT INTO `as_atributo` (`c_clase`, `c_atributo`, `c_metodo`, `d_atributo`, `d_tipo_dato_atributo`, `c_usuario`, `f_ingreso`, `c_tipo_atributo`) VALUES
-(1, 1, 2, 'de2', 'desas2', 'joao', '2015-11-02', '2'),
+(1, 3, 2, 'update', 'uodate', 'uu', '2015-11-02', '2'),
 (2, 2, 2, 'descipcion de prueba', 'dato2', 'joaito', '2015-11-02', '8');
 
 -- --------------------------------------------------------
@@ -138,6 +138,7 @@ CREATE TABLE IF NOT EXISTS `as_metodo` (
   `n_parametros` int(11) DEFAULT NULL,
   `c_tipo_metodo` varchar(1) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`c_clase`,`c_metodo`),
+  UNIQUE KEY `UK_7wxcn6qgpahfeubsvv5iu2336` (`c_clase`,`c_metodo`),
   KEY `fk_tipo_metodo` (`c_tipo_metodo`),
   KEY `fk_clase_metodo` (`c_clase`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -148,7 +149,9 @@ CREATE TABLE IF NOT EXISTS `as_metodo` (
 
 INSERT INTO `as_metodo` (`c_clase`, `c_metodo`, `d_metodo`, `d_tipo_retorno`, `c_usuario`, `f_ingreso`, `b_activo`, `n_parametros`, `c_tipo_metodo`) VALUES
 (1, 1, 'dmetodo1', 'dtiporetorno 1', '1', '2015-08-09', 0, 2, '1'),
-(2, 2, 'dmetodo2', 'dtiporetorno 2', '2', '2015-04-02', 0, 3, '2');
+(1, 23, 'descrici 23', 'Inetegr', 'joao', '2015-11-15', 1, 34, '4'),
+(2, 2, 'metodo descripti', 'String , double', 'funes', '2015-11-15', 1, 23, '2'),
+(2, 10, 'metodo descripti', 'String , double', 'Hernandez', '2015-11-15', 1, 23, '2');
 
 -- --------------------------------------------------------
 
@@ -230,9 +233,11 @@ CREATE TABLE IF NOT EXISTS `tb_tipo_atributo` (
 --
 
 INSERT INTO `tb_tipo_atributo` (`c_tipo_atributo`, `d_tipo_atributo`, `f_ingreso`) VALUES
-('1', 'despcricion 1', '2015-11-02'),
-('2', 'sfgdgdfgfdgdf', '2014-11-01'),
-('8', 'te hubieras ido antes', '2015-11-02');
+('1', 'despcricion 86', '2015-11-04'),
+('2', 'descripcion', '2015-11-03'),
+('4', 'hjdhi', '2015-11-04'),
+('7', 'descricion nuemro 7', '2015-11-04'),
+('A', '123456g', '2015-11-09');
 
 -- --------------------------------------------------------
 
@@ -254,7 +259,8 @@ CREATE TABLE IF NOT EXISTS `tb_tipo_clase` (
 INSERT INTO `tb_tipo_clase` (`c_tipo_clase`, `d_tipo_clase`, `f_ingreso`) VALUES
 ('1', 'clase 1', '2015-02-01'),
 ('2', 'clase 2', '2015-03-02'),
-('3', 'clase 3', '2015-07-01');
+('3', 'clase3', '1212-12-12'),
+('4', 'clase4', '2001-11-12');
 
 -- --------------------------------------------------------
 
@@ -281,24 +287,24 @@ INSERT INTO `tb_tipo_metodo` (`c_tipo_metodo`, `d_tipo_metodo`, `f_ingreso`) VAL
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `users`
+-- Estructura de tabla para la tabla `usuarios`
 --
 
-CREATE TABLE IF NOT EXISTS `users` (
-  `userid` int(11) NOT NULL AUTO_INCREMENT,
-  `firstname` varchar(45) DEFAULT NULL,
-  `lastname` varchar(45) DEFAULT NULL,
-  `dob` date DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`userid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+CREATE TABLE IF NOT EXISTS `usuarios` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `usuario` varchar(100) COLLATE utf8_bin DEFAULT NULL,
+  `password` varchar(30) COLLATE utf8_bin DEFAULT NULL,
+  `name` varchar(50) COLLATE utf8_bin DEFAULT NULL,
+  `rol` varchar(30) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=2 ;
 
 --
--- Volcado de datos para la tabla `users`
+-- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `users` (`userid`, `firstname`, `lastname`, `dob`, `email`) VALUES
-(1, '2', '3', '0000-00-00', 'dfhfgh');
+INSERT INTO `usuarios` (`id`, `usuario`, `password`, `name`, `rol`) VALUES
+(1, 'mail@address.com', 'joao', 'joao', 'adm');
 
 --
 -- Restricciones para tablas volcadas

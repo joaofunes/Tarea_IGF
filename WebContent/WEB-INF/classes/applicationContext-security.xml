@@ -12,11 +12,19 @@
     <http pattern="/style.css" security="none"/>
     <http pattern="/js/*" security="none"/>
     <http pattern="/images/*" security="none"/>
+    
+ 
+    
+    
     <http>
     	<intercept-url pattern="/index.jsp" access="ROLE_ADMIN,ROLE_USER,ROLE_GUEST"/>
         <intercept-url pattern="/Administracion/Usuarios/**" access="ROLE_ADMIN" />
         <intercept-url pattern="/**" access="ROLE_ADMIN,ROLE_USER" />
-        <form-login login-page='/login.html' default-target-url='/index.jsp' authentication-failure-url="/nologin.html" always-use-default-target='true'/>
+        <form-login
+         login-page='/login.html' 
+         default-target-url='/index.jsp'         
+         authentication-failure-url="/nologin.html" 
+         always-use-default-target='true'/>
         <access-denied-handler error-page="/denied.html" />
         <logout logout-success-url="/IGF2015v1/logout.html" invalidate-session="true" />      
     </http>
@@ -31,8 +39,8 @@
     <authentication-manager>
     	<authentication-provider>
     		<jdbc-user-service data-source-ref="dataSource" 
-    						   users-by-username-query="SELECT u.usuario, u.password, 'true' FROM usuarios u WHERE u.usuario = ?" 
-    						   authorities-by-username-query="SELECT u.usuario, u.role FROM usuarios u WHERE u.usuario = ? "/>
+    						   users-by-username-query="SELECT u.usuario, u.password, 'true' FROM Usuarios u WHERE u.usuario = ?" 
+    						   authorities-by-username-query="SELECT u.usuario, u.role FROM Usuarios u WHERE u.usuario = ? "/>
     	</authentication-provider>
     </authentication-manager>
 </beans:beans>

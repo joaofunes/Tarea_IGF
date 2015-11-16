@@ -20,6 +20,16 @@ http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 	<bean id="TbTipoAtributoController" class="sv.edu.ues.igf115.controller.TbTipoAtributoController">
 		<constructor-arg ref="TbTipoAtributoDao" />
 	</bean>
+	
+	<bean id="UsuariosDAO" class="sv.edu.ues.igf115.dao.UsuariosDAO">
+		<constructor-arg ref="hibernateUtil" />
+	</bean>
+	
+	<bean id="UsuariosCtrl" class="sv.edu.ues.igf115.controller.UsuariosCtrl">
+		<constructor-arg ref="UsuariosDAO" />
+	</bean>
+	
+	
 
     <bean id="AsMetodoPKDao" class="sv.edu.ues.igf115.dao.AsMetodoPKDao">
 		<constructor-arg ref="hibernateUtil" />
@@ -96,15 +106,6 @@ http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 	<bean id="ctrlApli" class="sv.edu.ues.igf115.controller.TbAplicativoController">
 		<constructor-arg ref="daoApli" />
 	</bean>
-	
-<!-- 	<bean id="AsClaseInterfaceDao" class="sv.edu.ues.igf115.dao.AsClaseInterfaceDao"> -->
-<!-- 		<constructor-arg ref="hibernateUtil" /> -->
-<!-- 	</bean> -->
-	
-<!-- 	<bean id="AsClaseInterfaceController" class="sv.edu.ues.igf115.controller.AsClaseInterfaceController"> -->
-<!-- 		<constructor-arg ref="AsClaseInterfaceDao" /> -->
-<!-- 		<constructor-arg ref="AsClaseDao" /> -->
-<!-- 		<constructor-arg ref="daoAsInter" /> -->
-<!-- 	</bean> -->
+
 	
 </beans>

@@ -8,7 +8,7 @@
 <%@page import="org.springframework.context.* , org.springframework.context.support.*, org.springframework.web.context.support.*" %>
 
 <%
-	ApplicationContext context= WebApplicationContextUtils.getRequiredWebApplicationContext(getServletContext());
+ApplicationContext context= WebApplicationContextUtils.getRequiredWebApplicationContext(getServletContext());
 AsMetodoController asMetodoController=(AsMetodoController) context.getBean("AsMetodoController");
 
 String crear = request.getParameter("crear");
@@ -37,7 +37,11 @@ String mensaje;
 			TbTipoMetodo tbTipoMetodo = asMetodoController
 					.daTbTipoMetodoEntidad(request
 							.getParameter("tipoMetodo"));
+			
 			asMetodo.setCTipoMetodo(tbTipoMetodo);
+			
+			AsClase asClase=asMetodoController.daAsClaseEntidad(Integer.parseInt(request.getParameter("clase")));
+			asMetodo.setAsClase(asClase);
 
 			boolean existe = asMetodoController.crear(asMetodo);
 			if (existe) {
@@ -85,7 +89,7 @@ String mensaje;
 
 			<div class="form-group">
 				<label for="clase"> Codigo Clase: <select name='clase'>
-						<option value="${AsMetodo.cClase}" selected>${AsMetodo.cClase}</option>
+						<option value="${AsMetodo.asMetodoPK.CClase}" selected>${AsMetodo.asMetodoPK.CClase}</option>
 						<c:forEach items="${lstAsClase}" var="clas">
 							<option value="${clas.CClase}">${clas.CClase}</option>
 						</c:forEach>

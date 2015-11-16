@@ -23,9 +23,8 @@ id = (request.getParameter("id") != null) ? Integer.parseInt(request.getParamete
 
 	if (crear != null && "yes".equals(crear)) {
 		
-		asMetodo=asMetodoController.daAsMetodoId(id);
-		
-		boolean existe = asMetodoController.update(asMetodo);
+		asMetodo=asMetodoController.findByIdAsMetodo(id);		
+		boolean existe = asMetodoController.eliminar(asMetodo);
 		
 	if (existe) {
 		response.sendRedirect("asmetodo.jsp");
@@ -39,7 +38,7 @@ id = (request.getParameter("id") != null) ? Integer.parseInt(request.getParamete
 	}	else{
 		
 		isd = (request.getParameter("userId")!=null)?Integer.parseInt(request.getParameter("userId")):id;
-		request.setAttribute("AsMetodo",asMetodo=asMetodoController.daAsMetodoId(isd));
+		request.setAttribute("AsMetodo",asMetodo=asMetodoController.findByIdAsMetodo(isd));
 	}
 %>
 
@@ -72,7 +71,7 @@ id = (request.getParameter("id") != null) ? Integer.parseInt(request.getParamete
 
 			<div class="form-group">
 				<label for="codigoMetodo"> Codigo Metodo:
-				<c:out value="${AsMetodo.cMetodo}" />
+				<c:out value="${AsMetodo.asMetodoPK.CMetodo}" />
 				</label>
 			</div>
 
@@ -103,7 +102,7 @@ id = (request.getParameter("id") != null) ? Integer.parseInt(request.getParamete
 
 			<div class="form-group">
 				<label for="clase"> Codigo Clase:
-				<c:out value="${AsMetodo.cClase}" />
+				<c:out value="${AsMetodo.asMetodoPK.CClase}" />
 				</label>
 			</div>
 
@@ -116,7 +115,7 @@ id = (request.getParameter("id") != null) ? Integer.parseInt(request.getParamete
 			
 		    <input type="hidden" id="id" name="id"	value=<c:out value="<%=isd%>" /> />
 		   <input type="hidden"	name="crear" value="yes" /> <input type="submit" value="SI" /> 				
-		   <input type="submit" value="NO" onclick="cambiaDefecto()" />
+		   <input type="submit" value="NO" href="asmetodo.jsp" />
 
 		</form>
 	</div>

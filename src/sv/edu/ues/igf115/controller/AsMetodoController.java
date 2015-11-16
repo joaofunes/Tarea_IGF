@@ -62,25 +62,16 @@ public class AsMetodoController {
 	public List<TbTipoMetodo> daTipoMetodo() {
 		return tbTipoMetodoDao.findByAll();
 	}
-	
-	
-//	public AsMetodoPK daAsMetodoPK(Integer clase,Integer metodo){
-//		
-//		AsMetodoPK asMetodoPK= new AsMetodoPK();
-//		asMetodoPK.setCClase(clase);
-//		asMetodoPK.setCMetodo(metodo);
-//		
-//		AsMetodoPK asMe=asMetodoPKDao.daAsMetodoPK(asMetodoPK);
-//		return asMe;		
-//	}
-	
+		
+
 	
 	public boolean update(AsMetodo asMetodo) {
 		try {
 			dao.update(asMetodo);
 			return true;
 		} catch (Exception e) {
-			System.out.println("Error  AsMetodoController Update");
+			System.out.println("Error  AsMetodoController Update" +e);
+		    e.printStackTrace();
 		}
 		return false;
 	}
@@ -107,6 +98,7 @@ public class AsMetodoController {
 			return true;
 		} catch (Exception e) {
 			System.out.println("error crear TbTipoMetodoController " + e);
+			   e.printStackTrace();
 			return false;
 		}
 
@@ -122,12 +114,13 @@ public class AsMetodoController {
 				return false;
 		} catch (Exception e) {
 			System.out.println("error crear AsMetodoController "+e );
+			   e.printStackTrace();
 		}
 		return false;
 	}
 	
-	  public AsMetodo daAsMetodoId(Integer id){
-			return dao.daDepartamentoById(id);
+	  public AsMetodo findByIdAsMetodo(Integer id){
+			return dao.findByIdAsMetodo(id);
 		}
 	
 	public boolean eliminar(AsMetodo asMetodo) {
@@ -137,6 +130,7 @@ public class AsMetodoController {
 			return true;
 		} catch (Exception e) {
 			System.out.println("error crear TbTipoMetodoController " + e);
+			e.printStackTrace();
 			return false;
 		}
 
