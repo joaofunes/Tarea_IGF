@@ -55,7 +55,7 @@ if(crear != null && "on".equals(crear)) {
 			
 			
 			<div class="form-group">
-				<label for="c_tipo_clase"> codigo clase:<input
+				<label for="c_tipo_clase"> codigo clase:<input required maxlength="5"
 					class="form-control" type="text" id="c_tipo_clase"
 					name="c_tipo_clase" 
 					value="<c:out value="${tb_tipo_clase.c_tipo_clase}" />" />
@@ -64,7 +64,7 @@ if(crear != null && "on".equals(crear)) {
 
 			
 			<div class="form-group">
-				<label for="d_tipo_clase"> nombre clase:<input
+				<label for="d_tipo_clase"> nombre clase:<input required maxlength="100"
 					class="form-control" type="text" id="d_tipo_clase"
 					name="d_tipo_clase" 
 					value="<c:out value="${tb_tipo_clase.d_tipo_clase}" />" />
@@ -72,7 +72,7 @@ if(crear != null && "on".equals(crear)) {
 			</div>
 			
 			<div class="form-group">
-				<label for="fecha"> fecha de ingreso:<input
+				<label for="fecha"> fecha de ingreso:<input required maxlength="10"
 					class="form-control" type="text" id="fecha"
 					name="fecha" 
 					value="<c:out value="${tb_tipo_clase.f_ingreso}" />" />

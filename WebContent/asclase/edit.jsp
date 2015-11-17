@@ -140,7 +140,7 @@ String mensaje;
 			<div class="form-group">
 				<label for="codClasePadre"> Codigo Clase Padre: <select
 					name='codClasePadre'>
-						<option value="${AsClase.CClasePadre}" selected>${AsClase.CClasePadre}</option>
+						<option value="${AsClase.CClasePadre.CClase}" selected>${AsClase.CClasePadre.CClase}</option>
 						<c:forEach items="${lstAsClase}" var="role">
 							<option value="${role.CClasePadre.CClase}">${role.CClasePadre.CClase}</option>
 						</c:forEach>

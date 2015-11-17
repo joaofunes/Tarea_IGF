@@ -69,7 +69,7 @@ String descripcion="";
 			
 			
 			<div class="form-group">
-				<label for="personid"> Codigo Aplicativo: <input
+				<label for="personid"> Codigo Aplicativo: <input required
 					class="form-control" id="codigo" name="codigo" readonly="readonly"
 					value=<c:out value="<%=tbAplicativo.getC_aplicativo()%>" /> />
 				</label>
@@ -77,7 +77,7 @@ String descripcion="";
 			
 			
 			<div class="form-group">
-				<label for="d_aplicativo"> nombre aplicativo:<input
+				<label for="d_aplicativo"> nombre aplicativo:<input required maxlength="100"
 					class="form-control" type="text" id="d_aplicativo"
 					name="d_aplicativo" 
 					value="<c:out value="${tb_aplicativo.getD_aplicativo()}" />" />
@@ -85,7 +85,7 @@ String descripcion="";
 			</div>
 			
 			<div class="form-group">
-				<label for="f_ingreso"> fecha de ingreso:<input
+				<label for="f_ingreso"> fecha de ingreso:<input required maxlength="10"
 					class="form-control" type="text" id="f_ingreso"
 					name="f_ingreso" 
 					value="<c:out value="${tb_aplicativo.f_ingreso}" />" />

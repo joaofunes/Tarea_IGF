@@ -90,7 +90,7 @@ Integer isd=null;
 
 			<div class="form-group">
 				<label for="codTipoClase"> Codigo Tipo Clase: 
-				  <c:out value="<%=asClase.getCTipoClase()%>"/>
+				  <c:out value="<%=asClase.getCTipoClase().getC_tipo_clase()%>"/>
 				</label>
 			</div>
 		
@@ -108,13 +108,13 @@ Integer isd=null;
 
 			<div class="form-group">
 				<label for="codAplicativo"> Codigo  Aplicativo:
-				<c:out value="<%=asClase.getCAplicativo()%>"/>
+				<c:out value="<%=asClase.getCAplicativo().getC_aplicativo()%>"/>
 				</label>
 			</div>
 			
 			<div class="form-group">
 				<label for="codClasePadre"> Codigo Clase Padre:
-				<c:out value="<%=asClase.getCClasePadre()%>"/>
+				<c:out value="<%=asClase.getCClasePadre().getCClase()%>"/>
 				</label>
 			</div>
 			

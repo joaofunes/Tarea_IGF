@@ -28,7 +28,8 @@
 		asClase.setDClase(request.getParameter("descripcionClase"));
 		asClase.setCTipoClase(tb);
 		asClase.setCUsuario(request.getParameter("usuario"));
-		asClase.setFIngreso(formatter.parse(request.getParameter("fecha")));
+// 		asClase.setFIngreso(formatter.parse(request.getParameter("fecha")));
+		asClase.setFIngreso(new Date());
 		asClase.setCAplicativo(ta);
 		asClase.setCClasePadre(ac);
 
@@ -94,7 +95,7 @@
 			<div class="form-group">
 				<label for="codTipoClase"> Codigo Tipo Clase: <select
 					name='codTipoClase'>
-						<option value="${TbTipoClase.CTipoClase}" selected>${TbTipoClase.CTipoClase}</option>
+						<option value="${AsClase.cTipoClase.c_tipo_clase}" selected>${AsClase.cTipoClase.c_tipo_clase}</option>
 						<c:forEach items="${lstTbTipoClase}" var="met">
 							<option value="${met.c_tipo_clase}">${met.c_tipo_clase}</option>
 						</c:forEach>
@@ -122,7 +123,7 @@
 			<div class="form-group">
 				<label for="codAplicativo"> Codigo Aplicativo: <select
 					name='codAplicativo'>
-						<option value="${TbAplicativo.c_aplicativo}" selected>${TbAplicativo.c_aplicativo}</option>
+						<option value="${TbAplicativo.cAplicativo.c_aplicativo}" selected>${TbAplicativo.cAplicativo.c_aplicativo}</option>
 						<c:forEach items="${lstAplicativo}" var="role">
 							<option value="${role.c_aplicativo}">${role.c_aplicativo}</option>
 						</c:forEach>
@@ -133,9 +134,9 @@
 			<div class="form-group">
 				<label for="codClasePadre"> Codigo Clase Padre: <select
 					name='codClasePadre'>
-						<option value="${AsClase.CClasePadre}" selected>${AsClase.CClasePadre}</option>
+						<option value="${AsClase.CClasePadre.CClase}" selected>${AsClase.CClasePadre.CClase}</option>
 						<c:forEach items="${lstAsClase}" var="role">
-							<option value="${role.CClasePadre.CClase}">${role.CClasePadre.CClase}</option>
+							<option value="${role.CClase}">${role.CClase}</option>
 						</c:forEach>
 				</select>
 				</label>

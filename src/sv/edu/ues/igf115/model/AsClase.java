@@ -32,7 +32,6 @@ import javax.persistence.TemporalType;
 public class AsClase implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "c_clase", nullable = false)
     private Integer cClase;

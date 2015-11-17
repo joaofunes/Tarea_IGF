@@ -95,7 +95,7 @@
 			
 			<div class="form-group">
 				<label for="d_aplicativo"> nombre aplicativo:<input
-					class="form-control" type="text" id="d_aplicativo"
+					class="form-control" type="text" id="d_aplicativo" readonly="readonly"
 					name="d_aplicativo" 
 					value="<c:out value="<%=tbTipoClase.getD_tipo_clase()%>" />" />
 				</label>
@@ -103,7 +103,7 @@
 			
 			<div class="form-group">
 				<label for="f_ingreso"> fecha de ingreso:<input
-					class="form-control" type="text" id="f_ingreso"
+					class="form-control" type="text" id="f_ingreso" readonly="readonly"
 					name="f_ingreso" 
 					value="<c:out value="<%=tbTipoClase.getF_ingreso()%>" />" />
 				</label>

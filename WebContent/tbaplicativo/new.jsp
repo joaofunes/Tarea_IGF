@@ -55,7 +55,7 @@ if(crear != null && "on".equals(crear)) {
 			
 			
 			<div class="form-group">
-				<label for="c_aplicativo"> codigo aplicativo:<input
+				<label for="c_aplicativo"> codigo aplicativo:<input required maxlength="5"
 					class="form-control" type="text" id="c_aplicativo"
 					name="c_aplicativo" 
 					value="<c:out value="${tb_aplicativo.c_aplicativo}" />" />
@@ -64,7 +64,7 @@ if(crear != null && "on".equals(crear)) {
 
 			
 			<div class="form-group">
-				<label for="d_aplicativo"> descripcion aplicativo:<input
+				<label for="d_aplicativo"> descripcion aplicativo:<input required maxlength="100"
 					class="form-control" type="text" id="d_aplicativo"
 					name="d_aplicativo" 
 					value="<c:out value="${tb_aplicativo.d_aplicativo}" />" />
@@ -72,7 +72,7 @@ if(crear != null && "on".equals(crear)) {
 			</div>
 	 	
 			<div class="form-group">
-				<label for="fecha"> fecha de ingreso:<input
+				<label for="fecha"> fecha de ingreso:<input required maxlength="10"
 					class="form-control" type="text" id="fecha"
 					name="fecha" 
 					value="<c:out value="${tb_aplicativo.f_ingreso}" />" size=8 />

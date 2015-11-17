@@ -74,7 +74,7 @@ System.out.println (crear);
 			
 			
 			<div class="form-group">
-				<label for="d_tipo_clase"> nombre clase:<input
+				<label for="d_tipo_clase"> nombre clase:<input required maxlength="100"
 					class="form-control" type="text" id="d_tipo_clase"
 					name="d_tipo_clase" 
 					value="<c:out value="${tb_tipo_clase.getD_tipo_clase()}" />" />
@@ -82,7 +82,7 @@ System.out.println (crear);
 			</div>
 			
 			<div class="form-group">
-				<label for="f_ingreso"> fecha de ingreso:<input
+				<label for="f_ingreso"> fecha de ingreso:<input required maxlength="10"
 					class="form-control" type="text" id="f_ingreso"
 					name="f_ingreso" 
 					value="<c:out value="${tb_tipo_clase.f_ingreso}" />" />
