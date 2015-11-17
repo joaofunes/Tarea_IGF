@@ -45,16 +45,18 @@ http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 	
 	<bean id="AsAtributoController" class="sv.edu.ues.igf115.controller.AsAtributoController">
 		<constructor-arg ref="AsAtributoDao" />
-		<constructor-arg ref="AsClaseDao" />
+		<constructor-arg ref="asClaseDao" />
 		<constructor-arg ref="TbTipoAtributoDao" />
 		<constructor-arg ref="AsMetodoDao" />
 	</bean>
-	
-	<bean id="AsClaseDao" class="sv.edu.ues.igf115.dao.AsClaseDao">
+
+	<bean id="asClaseDao" class="sv.edu.ues.igf115.dao.AsClaseDao">
 		<constructor-arg ref="hibernateUtil" />
 	</bean>
 	<bean id="AsClaseController" class="sv.edu.ues.igf115.controller.AsClaseController">
-		<constructor-arg ref="AsClaseDao" />
+		<constructor-arg ref="asClaseDao" />
+		<constructor-arg ref="daoDepto" />
+		<constructor-arg ref="daoApli" />
 	</bean>
 	
 	<bean id="AsMetodoDao" class="sv.edu.ues.igf115.dao.AsMetodoDao">
@@ -62,13 +64,10 @@ http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 	</bean>
 	<bean id="AsMetodoController" class="sv.edu.ues.igf115.controller.AsMetodoController">
 		<constructor-arg ref="AsMetodoDao" />
-		<constructor-arg ref="AsClaseDao" />
+		<constructor-arg ref="asClaseDao" />
 		<constructor-arg ref="TbTipoMetodoDao" />
 		<constructor-arg ref="AsMetodoPKDao" />
 	</bean>
-	
-	
-	
 	
 	<bean id="TbTipoMetodoDao" class="sv.edu.ues.igf115.dao.TbTipoMetodoDao">
 		<constructor-arg ref="hibernateUtil" />
@@ -105,6 +104,14 @@ http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 	
 	<bean id="ctrlApli" class="sv.edu.ues.igf115.controller.TbAplicativoController">
 		<constructor-arg ref="daoApli" />
+	</bean>
+	
+	<bean id="AsClaseInterfaceDao" class="sv.edu.ues.igf115.dao.AsClaseInterfaceDao">
+		<constructor-arg ref="hibernateUtil" />
+	</bean>
+	
+	<bean id="AsClaseInterfaceController" class="sv.edu.ues.igf115.controller.AsClaseInterfaceController">
+		<constructor-arg ref="AsClaseInterfaceDao" />
 	</bean>
 
 	

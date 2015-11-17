@@ -4,13 +4,16 @@
 <%@page import="org.springframework.context.* , org.springframework.context.support.*, org.springframework.web.context.support.*" %>
 <%@page import="sv.edu.ues.igf115.controller.*"%>
 <%@page import="sv.edu.ues.igf115.model.*"%>
-<%@page import="java.util.Date" %>
+<%@page import="java.util.*" %>
 <%@page import="java.text.*" %>
 
 <%
 ApplicationContext context= WebApplicationContextUtils.getRequiredWebApplicationContext(getServletContext());
 AsInterfaceImplementaController AsInterImplementsCtrol=(AsInterfaceImplementaController) context.getBean("AsInterImplementsCtrol");
-CtrlAsInterface ctrolAsInte=(CtrlAsInterface) context.getBean("ctrlAsInter");
+CtrlAsInterface ctrlAsInter=(CtrlAsInterface) context.getBean("ctrlAsInter");
+
+List<AsInterfaceImplementa> list= AsInterImplementsCtrol.daAsInterfaceImplementa();
+List<AsInterface> list2= ctrlAsInter.daAsInterface();
 
 String crear = request.getParameter("crear");
 System.out.println (crear);
@@ -49,32 +52,50 @@ String mensaje;
 <body>
 	<div class="container">
 		<form method="POST" action='nuevoAsInterfaceImplementa.jsp' name="frmAddAtributo" role="form">
-
 			<div class="form-group">
-				<label for="cInterface">Código: <input
-					class="form-control" type="number" id="cInterfaceImplementa" name="cInterfaceImplementa"
-					value=<c:out value="${AsInterfaceImplementa.cInterfaceImplementa}" /> />
+				<label for="cInterfaceImplementa">Código:
+				<select id="cInterfaceImplementa" name="cInterfaceImplementa"  style="width:225%;height:30px">
+				<%
+				boolean b;
+				for(int i=1; i<100; i++){
+					b=true;
+					for(int j=0; j<list.size(); j++){
+						if(list.get(j).getCInterfaceImplementa()==i){
+							b=false;
+							}
+						}
+						if(b){
+				%>		   
+				  			 <option><c:out value="<%=i%>" /></option>
+					
+				<%			}
+					}%>
+				</select>
 				</label>
 			</div>
 			
 			<div class="form-group">
-				<label for="dInterface">Padre:<input
-					class="form-control" type="number" id="c_interface_padre"
-					name="c_interface_padre" 
-					value="<c:out value="${AsInterfaceImplementa.c_interface_padre}" />" />
+				<label for="c_interface_padre">Interface Padre:
+				<select id="c_interface_padre" name="c_interface_padre"  style="width:149%;height:30px">
+				<c:forEach items="<%=list2%>" var="AsInterface">
+				<option><c:out value="${AsInterface.CInterface}" /></option>
+				</c:forEach>
+				</select>
 				</label>
 			</div>
 			
 			<div class="form-group">
-				<label for="cUsuario">Hijo:<input
-					class="form-control" type="number" id="c_interface_hijo"
-					name="c_interface_hijo" 
-					value="<c:out value="${AsInterfaceImplementa.c_interface_hijo}" />" />
+				<label for="c_interface_hijo">Interface Hijo:
+				<select id="c_interface_hijo" name="c_interface_hijo"  style="width:165%;height:30px">
+				<c:forEach items="<%=list2%>" var="AsInterface">
+				<option><c:out value="${AsInterface.CInterface}" /></option>
+				</c:forEach>
+				</select>
 				</label>
 			</div>
 			
 			    <input type="hidden" name="crear" value="on"/>
-			 <input type="submit" value="Guardar"/>
+			  <button type="submit" class="btn btn-primary">Guardar</button>
 		</form>
 	</div>
 	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>

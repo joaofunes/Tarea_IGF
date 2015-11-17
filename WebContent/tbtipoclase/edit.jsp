@@ -11,23 +11,7 @@ ApplicationContext context= WebApplicationContextUtils.getRequiredWebApplication
 TbTipoClaseController ctrlDept=(TbTipoClaseController) context.getBean("ctrlDepto");
 String crear = request.getParameter("crear");
 System.out.println (crear);
-/*
-if(crear != null && "on".equals(crear)) {
-	//Integer id = Integer.parseInt(request.getParameter("idDep"));
-	String ctipoant = request.getParameter("c_tipo_clase_ant");
-	//String ctipo = request.getParameter("c_tipo_clase");
-	String dtipo = request.getParameter("d_tipo_clase");
-	boolean existe = ctrlDept.modificarDepartamento(ctipoant, dtipo, null);
-	String mensaje;
 
-		if (existe) {
-			response.sendRedirect("lista.jsp");
-			mensaje = "Se creo el  tipo clase";
-		} else {
-			response.sendRedirect("edit.jsp");
-			mensaje = "Error al guardar tipo clase";
-		}
-	}	*/
 	TbTipoClase tbTipoClase = null;
 
 	String mensaje;
@@ -41,7 +25,6 @@ if(crear != null && "on".equals(crear)) {
 			id = request.getParameter("codigo");		
 			tbTipoClase = ctrlDept.daDepartamentoByID(id);
 			tbTipoClase.setD_tipo_clase(request.getParameter("d_tipo_clase"));
-			//java.util.Date fecha = formatter.parse(request.getParameter("fecha"));
 			tbTipoClase.setF_ingreso(formatter.parse(request.getParameter("f_ingreso")));
 	 
 			boolean existe = ctrlDept.modificarDepartamento(tbTipoClase);
@@ -76,6 +59,7 @@ if(crear != null && "on".equals(crear)) {
 <link href="Resource/bootstrap.css" rel="stylesheet">
 </head>
 <body>
+<center><h2>Editar Tb_Tipo_Clase</h2></center>
 	<div class="container">
 		<form method="POST" action='edit.jsp' name="frmAddAtributo" role="form">
 

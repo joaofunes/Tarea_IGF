@@ -9,39 +9,35 @@
 
 <%
 ApplicationContext context= WebApplicationContextUtils.getRequiredWebApplicationContext(getServletContext());
-CtrlAsInterface ctrlAsInte=(CtrlAsInterface) context.getBean("ctrlAsInter");
+AsInterfaceImplementaController AsInterImplementsCtrol=(AsInterfaceImplementaController) context.getBean("AsInterImplementsCtrol");
 
-
-AsInterface asInterface = null ;
+AsInterfaceImplementa asInterfaceImplementa = null ;
 
 String crear = request.getParameter("crear");
 
 
 String mensaje;
-Integer isd= 0;
-String codigo="";
-String descripcion="";
+Integer isd=0;
+Integer codigo;
 
 	if (crear != null && "yes".equals(crear)) {
 		Integer id= Integer.parseInt(request.getParameter("id"));
-		asInterface = ctrlAsInte.daAsInterfaceById(id);
-		
-		boolean existe = ctrlAsInte.eliminar(asInterface);
+		asInterfaceImplementa = AsInterImplementsCtrol.daAsInterfaceImplementaById(id);	
+		boolean existe = AsInterImplementsCtrol.eliminar(asInterfaceImplementa);
 		 
 		if (existe) {
-			response.sendRedirect("listAsInterface.jsp");
+			response.sendRedirect("listAsInterfaceImplementa.jsp");
 			mensaje = "Se creo el  departamento";
 		} else {
-			response.sendRedirect("listAsInterface.jsp");
+			response.sendRedirect("listAsInterfaceImplementa.jsp");
 			mensaje = "Error al guardar el cliente";
 		}
 	} else if (crear != null && "no".equals(crear)) {
-		response.sendRedirect("listAsInterface.jsp");
+		response.sendRedirect("listAsInterfaceImplementa.jsp");
 	}else{
 		isd = Integer.parseInt(request.getParameter("userId"));
-		asInterface = ctrlAsInte.daAsInterfaceById(isd);
-		codigo = asInterface.getCUsuario();
-		descripcion = asInterface.getDInterface();
+		asInterfaceImplementa = AsInterImplementsCtrol.daAsInterfaceImplementaById(isd);
+		codigo = asInterfaceImplementa.getCInterfaceImplementa();
 	}
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -65,36 +61,24 @@ String descripcion="";
 </head>
 <body>
 	<div class="container">
-		<form method="POST" action='deleteAsInterface.jsp' name="frmAddAtributo"
+		<form method="POST" action='deleteAsInterfaceImplementa.jsp' name="frmAddAtributo"
 			role="form">
 
 
-			<label for="lab"> Seguro que desea eliminar el registro </label>
+			<label for="lab"> ¿Seguro que desea eliminar el registro ?</label>
 
 
 			<div class="form-group">
-				<label for="personid"> Codigo Atributo: 
-				<c:out value="<%=asInterface.getCInterface()%>"  />
+				<label for="personid"> Codigo: 
+				<c:out value="<%=asInterfaceImplementa.getCInterfaceImplementa()%>"  />
 				</label>
 			</div>
-			<div class="form-group">
-				<label for="name"> Descripcion Atributo:
-				<c:out value="<%=asInterface.getDInterface()%>"  />
-				</label>
-			</div>
-			
-			<div class="form-group">
-				<label for="name"> Fecha de Ingreso:
-				<c:out value="<%=asInterface.getFIngreso()%>"  />
-				</label>
-			</div>
-			
 			<td></td>
 			
 			<input type="hidden" id="id" name="id" value=<c:out value="<%=isd%>" /> />
 			<input type="hidden" name="crear" value="yes" /> 
 			<input type="submit" value="SI"/>
-			<input type="button" value="NO" onClick="location.href='listAsInterface.jsp'"/>
+			<input type="button" value="NO" onClick="location.href='listAsInterfaceImplementa.jsp'"/>
 			
 		</form>
 	</div>

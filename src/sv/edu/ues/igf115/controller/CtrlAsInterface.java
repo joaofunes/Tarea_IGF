@@ -1,41 +1,42 @@
 package sv.edu.ues.igf115.controller;
 
-import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import sv.edu.ues.igf115.dao.AsInterfaceDao;
 import sv.edu.ues.igf115.model.AsInterface;
 
-public class CtrlAsInterface extends HttpServlet {
+@Transactional
+@Service
+public class CtrlAsInterface {
 
-	private static final long serialVersionUID = 1L;
-	private static String INSERT_OR_EDIT = "./users/new.jsp";
-	private static String LIST_USER = "./users/listAsInterface.jsp";
-	private static String LIST_INDEX = "./users/inicio.jsp";
 
-	private AsInterfaceDao daoAsInter;
-	private AsInterface asInterface;
+	private AsInterfaceDao daoAsInterface;
+	private AsInterface asInterfaceImplementa;
 	
 	@Autowired
-	public CtrlAsInterface(AsInterfaceDao daoAsInter) {
-		this.daoAsInter = daoAsInter;
+	public CtrlAsInterface(AsInterfaceDao daoAsInterImplemCont) {
+		this.daoAsInterface = daoAsInterImplemCont;
 	}
 	
-	public boolean crearAsInterface(String d_interface, String c_usuario, Date f_ingreso) {
+	public boolean crearAsInterface(Integer cInterface, String dInterface, String cUsuario, Date fIngreso) {
 		try {
 
-			if (daoAsInter.daAsInterfaceByNombre(d_interface) == null) {
-				AsInterface asInterface = new AsInterface(d_interface, c_usuario, f_ingreso);
-				daoAsInter.guardaActualiza(asInterface);
+			if (daoAsInterface.daAsInterfaceByID(cInterface) == null) {
+				
+				AsInterface asInterface = new AsInterface();
+				asInterface.setCInterface(cInterface);
+				asInterface.setDInterface(dInterface);
+				asInterface.setCUsuario(cUsuario);
+				asInterface.setFIngreso(fIngreso);
+				
+				daoAsInterface.guardaActualiza(asInterface);
 				return true;
 			} else
 				return false;
@@ -48,7 +49,7 @@ public class CtrlAsInterface extends HttpServlet {
 	public boolean eliminar(AsInterface asInterface) {
 
 		try {
-			daoAsInter.eliminar(asInterface);
+			daoAsInterface.eliminar(asInterface);
 			return true;
 		} catch (Exception e) {
 			System.out.println("error crear AsInterfaceController " + e);
@@ -59,24 +60,25 @@ public class CtrlAsInterface extends HttpServlet {
 	
 	public boolean update(AsInterface asInterface) {
 		try {
-			daoAsInter.guardaActualiza(asInterface);
+			daoAsInterface.guardaActualiza(asInterface);
 			return true;
 		} catch (Exception e) {
-			System.out.println("Error  TbTipoAtributoController Update");
+			System.out.println("Error  AsInterfaceController Update");
 		}
 		return false;
 	}
 	
 	
-	public List<AsInterface> daAsInterfaces() {
-		return daoAsInter.daAsInterface();
+	public List<AsInterface> daAsInterface() {
+		return daoAsInterface.daAsInterface();
 	}
 
-	public AsInterface daAsInterfaceById(short c_interface) {
-		return daoAsInter.daAsInterfaceByID(c_interface);
+	public AsInterface daAsInterfaceById(Integer c_interface) {
+		return daoAsInterface.daAsInterfaceByID(c_interface);
 	}
 
-	public AsInterface daAsInterfaceByNombre(String d_interface) {
-		return daoAsInter.daAsInterfaceByNombre(d_interface);
+	public AsInterface daAsInterfaceImplementaByNombre(String d_interface) {
+		return daoAsInterface.daAsInterfaceByNombre(d_interface);
 	}
+
 }

@@ -14,6 +14,7 @@ AsInterfaceImplementaController AsInterImplementsCtrol=(AsInterfaceImplementaCon
 List<AsInterfaceImplementa> list= AsInterImplementsCtrol.daAsInterfaceImplementa();
 
 %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -34,6 +35,7 @@ List<AsInterfaceImplementa> list= AsInterImplementsCtrol.daAsInterfaceImplementa
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <title>AsInterfaceImplementa</title>
+
 </head>
 <body>
 <center><h2>AS_INTERFACE_IMPLEMENTA</h2></center>
@@ -51,12 +53,13 @@ List<AsInterfaceImplementa> list= AsInterImplementsCtrol.daAsInterfaceImplementa
                         <th>Eliminar</th>
 					</tr>
 				</thead>
+
 				<tbody>
 					<c:forEach items="<%=list%>" var="AsInterfaceImplementa">
 						<tr>
 						    <td><c:out value="${AsInterfaceImplementa.CInterfaceImplementa}" /></td>
-                    		<td><c:out value="${AsInterfaceImplementa.CInterfaceHijo}" /></td>
                     		<td><c:out value="${AsInterfaceImplementa.CInterfacePadre}" /></td>
+                    		<td><c:out value="${AsInterfaceImplementa.CInterfaceHijo}" /></td>
                     
                     		<td><a href="editAsInterfaceImplementa.jsp?userId=<c:out value="${AsInterfaceImplementa.CInterfaceImplementa}"/>">Modificar</a></td>      
                     		<td><a href="deleteAsInterfaceImplementa.jsp?userId=<c:out value="${AsInterfaceImplementa.CInterfaceImplementa}"/>">Eliminar</a></td>
@@ -65,7 +68,7 @@ List<AsInterfaceImplementa> list= AsInterImplementsCtrol.daAsInterfaceImplementa
 				</tbody>
 			</table>
 		<center> 
-		<input type="button" value="Crear Nuevo" onClick="location.href='nuevoAsInterfaceImplementa.jsp'" />
+		 <button type="submit" value="Crear Nuevo" onClick="location.href='nuevoAsInterfaceImplementa.jsp'" class="btn btn-primary">Crear Nuevo</button>
 		</center> 
 		</div>
 		</section>

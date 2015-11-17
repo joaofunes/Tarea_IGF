@@ -82,7 +82,7 @@
 
 		   <input type="hidden" id="id" name="id"	value=<c:out value="<%=isd%>" /> />
 		   <input type="hidden"	name="crear" value="yes" /> <input type="submit" value="SI" /> 				
-		   <input type="submit" value="NO" onclick="cambiaDefecto()" />
+		   <input type="submit" value="NO" href="tbtipometodo.jsp" />
 
 		</form>
 	</div>

@@ -97,11 +97,11 @@ public class AsInterfaceDao {
 	}
 	
 	
-	public AsInterface daAsInterfaceByID(Short id) {
+	public AsInterface daAsInterfaceByID(Integer id) {
 		try {
 
 			sesion = sessionFactory.openSession();
-			Query query= sesion.createQuery("Select asinter from AsInterface asinter where asinter.c_interface=:id");
+			Query query= sesion.createQuery("Select asinter from AsInterface asinter where asinter.cInterface=:id");
 			query.setParameter("id", id);
 			AsInterface asInter = (AsInterface) query.uniqueResult();
 			sesion.close();

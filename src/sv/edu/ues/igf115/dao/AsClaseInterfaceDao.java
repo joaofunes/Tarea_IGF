@@ -15,30 +15,41 @@ import sv.edu.ues.igf115.utilidades.HibernateUtils;
 
 @Repository
 public class AsClaseInterfaceDao {
-
-	private HibernateUtils hibernateUtil;
-	private SessionFactory sessionFactory = hibernateUtil.getSessionFactory();
-	private Session sesion;
-	private Transaction tx;
+	
+	@Autowired	
+private HibernateUtils hibernateUtil;
+	
 	
 	@Autowired
 	public AsClaseInterfaceDao(HibernateUtils hibernateUtil) {
+		super();
 		this.hibernateUtil = hibernateUtil;
 	}
-	
-	
+
+	private SessionFactory sessionFactory = hibernateUtil.getSessionFactory();
+	private Session sesion;
+	private Transaction tx;
+
 	private void iniciaOperacion() throws HibernateException {
-		sesion = sessionFactory.openSession() ;
-		tx = sesion.beginTransaction() ;
-		}
-	
+		sesion = sessionFactory.openSession();
+		tx = sesion.beginTransaction();
+	}
+
 	private void manejaExcepcion(HibernateException he)
 			throws HibernateException {
 		tx.rollback();
-		throw new HibernateException("Ocurrió un error en la AsClaseInterfaceDao ", he);
-	} 
+		throw new HibernateException("Ocurrió un error en la capa DAO", he);
+	}
 	
-	public void guardar(AsClaseInterface asClaseInterface) {
+	public List<AsClaseInterface> daAsClaseInterface() {
+		sesion = sessionFactory.openSession();
+		Query query = sesion.createQuery("Select d from  AsClaseInterface d");
+		List<AsClaseInterface> asClaseInterface = query.list();
+		sesion.close();
+		return asClaseInterface;
+	}
+	
+	public void guardaActualiza(AsClaseInterface asClaseInterface) {
 		try {
 			iniciaOperacion();
 			sesion.saveOrUpdate(asClaseInterface);
@@ -52,7 +63,7 @@ public class AsClaseInterfaceDao {
 		}
 	}
 	
-	public void borrar(AsClaseInterface asClaseInterface) {
+	public void eliminar(AsClaseInterface asClaseInterface) {
 		try {
 			iniciaOperacion();
 			sesion.delete(asClaseInterface);
@@ -64,36 +75,51 @@ public class AsClaseInterfaceDao {
 		} finally {
 			sesion.close();
 		}
-	}
+}
+	public AsClaseInterface daAsClaseInterfaceByNombre(Integer nombre) {
+		try {
 
-
-	public AsClaseInterface daAsClaseInterfaceById(short idDep){
-		 sesion = sessionFactory.openSession() ;
-		 // Retorna la instancia persistente de la clase por medio del	atributo identidad
-		 AsClaseInterface id = (AsClaseInterface) sesion.get(AsClaseInterface.class, new Short(idDep)) ;
-		 sesion.close() ;
-		 return id ;
+			sesion = sessionFactory.openSession();
+			Query query= sesion.createQuery("Select dep from AsClaseInterface dep where dep.cClaseInterface=:cClaseInterface");
+			query.setParameter("cClaseInterface", nombre);
+			AsClaseInterface asClaseInterface = (AsClaseInterface) query.uniqueResult();
+			sesion.close();
+			return asClaseInterface;	
+		} catch (Exception e) {
+			System.out.println("error DAO daAsClaseInterfaceByNombre"+e);
 		}
+		return null;
+	}
 	
-	public List<AsClaseInterface> findByAll() {
-		sesion = sessionFactory.openSession();
-		//Query query = sesion.getNamedQuery("Departamentos.findAll");
-		Query query = sesion.createQuery("Select u From AsClaseInterface u");
-		List<AsClaseInterface> asClaseInterface = query.list();
-		sesion.close();
-		return asClaseInterface;
+	
+	public AsClaseInterface daAsClaseInterfaceByID(Integer id) {
+		try {
+
+			sesion = sessionFactory.openSession();
+			Query query= sesion.createQuery("Select asinter from AsClaseInterface asinter where asinter.cClaseInterface=:id");
+			query.setParameter("id", id);
+			AsClaseInterface asClaseInterface= (AsClaseInterface) query.uniqueResult();
+			sesion.close();
+			return asClaseInterface;	
+		} catch (Exception e) {
+			System.out.println("error DAO dasClaseInterfaceByID"+e);
+		}
+		return null;
 	}
 
-	public AsClaseInterface findByIdAsClaseInterface(Integer nombre) {
-		sesion = sessionFactory.openSession();
-//		Query query = sesion.getNamedQuery("Departamentos.findByNombreDep");
-//		query.setParameter("nombreDep", nombre);
-		Query query = sesion.createQuery("Select u from AsClaseInterface u where u.cClase =:idTipo");
-		query.setParameter("idTipo", nombre);
-		AsClaseInterface asClaseInterface = (AsClaseInterface) query.uniqueResult();
-		sesion.close();
-		return asClaseInterface;
+	public boolean update(AsClaseInterface asClaseInterface) {
+		try {
+			iniciaOperacion();
+			sesion.update(asClaseInterface);
+			tx.commit();
+			sesion.flush();
+		} catch (HibernateException he) {
+			manejaExcepcion(he);
+			throw he;
+		} finally {
+			sesion.close();
+		}
+		return false;
 	}
-	
-	
+
 }

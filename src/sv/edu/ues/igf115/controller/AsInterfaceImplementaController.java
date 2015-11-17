@@ -1,23 +1,19 @@
 package sv.edu.ues.igf115.controller;
 
-import java.util.Date;
+
 import java.util.List;
 
-import javax.servlet.http.HttpServlet;
-
 import org.springframework.beans.factory.annotation.Autowired;
-
-import sv.edu.ues.igf115.dao.AsInterfaceDao;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import sv.edu.ues.igf115.dao.AsInterfaceImplementaDao;
-import sv.edu.ues.igf115.model.AsInterface;
 import sv.edu.ues.igf115.model.AsInterfaceImplementa;
 
-public class AsInterfaceImplementaController extends HttpServlet{
-	private static final long serialVersionUID = 1L;
-	private static String INSERT_OR_EDIT = "./users/new.jsp";
-	private static String LIST_USER = "./users/listAsInterface.jsp";
-	private static String LIST_INDEX = "./users/inicio.jsp";
+@Transactional
+@Service
 
+public class AsInterfaceImplementaController{
+	
 	private AsInterfaceImplementaDao daoAsInterImplemCont;
 	private AsInterfaceImplementa asInterfaceImplementa;
 	

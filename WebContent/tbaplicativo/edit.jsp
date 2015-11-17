@@ -62,6 +62,7 @@ String descripcion="";
 <link href="Resource/bootstrap.css" rel="stylesheet">
 </head>
 <body>
+<center><h2>Editar Tb_Aplicativo</h2></center>
 	<div class="container">
 		<form method="POST" action='edit.jsp' name="frmAddAtributo" role="form">
 

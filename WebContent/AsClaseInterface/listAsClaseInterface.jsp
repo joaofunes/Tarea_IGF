@@ -1,17 +1,18 @@
 <%@page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@page import="java.util.*" %>
-<%@page import="org.springframework.context.* , org.springframework.context.support.*, org.springframework.web.context.support.*" %>
 <%@page import="sv.edu.ues.igf115.controller.*"%>
 <%@page import="sv.edu.ues.igf115.model.*"%>
+<%@page import="java.util.*"%>
+<%@page import="org.springframework.context.* , org.springframework.context.support.*, org.springframework.web.context.support.*" %>
+
 
 <%
 ApplicationContext context= WebApplicationContextUtils.getRequiredWebApplicationContext(getServletContext());
-CtrlAsInterface ctrlAsInter=(CtrlAsInterface) context.getBean("ctrlAsInter");
+AsClaseInterfaceController asClaseInterfaceController=(AsClaseInterfaceController) context.getBean("AsClaseInterfaceController");
 
-List<AsInterface> list= ctrlAsInter.daAsInterface();
+List<AsClaseInterface> list= asClaseInterfaceController.daAsClaseInterface();
 
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
@@ -33,11 +34,10 @@ List<AsInterface> list= ctrlAsInter.daAsInterface();
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<title>AsInterface</title>
-
+<title>AsInterfaceImplementa</title>
 </head>
 <body>
-<center><h2>AS_INTERFACE</h2></center>
+<center><h2>AS_CLASE_INTERFACE</h2></center>
 	<div class="wrap">
 		<section>
 		<div class="container">
@@ -46,29 +46,27 @@ List<AsInterface> list= ctrlAsInter.daAsInterface();
 				<thead>
 					<tr>
 						<th>Código</th>
-                        <th>Descripción</th>
-                        <th>Usuario</th>
-                        <th>Fecha</th>
+                        <th>Clase</th>
+                        <th>Interface</th>
                         <th>Modificar</th>
                         <th>Eliminar</th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="<%=list%>" var="AsInterface">
+					<c:forEach items="<%=list%>" var="AsClaseInterface">
 						<tr>
-						    <td><c:out value="${AsInterface.CInterface}" /></td>
-                    		<td><c:out value="${AsInterface.DInterface}" /></td>
-                    		<td><c:out value="${AsInterface.CUsuario}" /></td>
-                    		<td><c:out value="${AsInterface.FIngreso}" /></td>
+						    <td><c:out value="${AsClaseInterface.CClaseInterface}" /></td>
+                    		<td><c:out value="${AsClaseInterface.CClase}" /></td>
+                    		<td><c:out value="${AsClaseInterface.CInterface}" /></td>
                     
-                    		<td><a href="editAsInterface.jsp?userId=<c:out value="${AsInterface.CInterface}"/>">Modificar</a></td>      
-                    		<td><a href="deleteAsInterface.jsp?userId=<c:out value="${AsInterface.CInterface}"/>">Eliminar</a></td>
+                    		<td><a href="editAsClaseInterface.jsp?userId=<c:out value="${AsClaseInterface.CClaseInterface}"/>">Modificar</a></td>      
+                    		<td><a href="deleteAsClaseInterface.jsp?userId=<c:out value="${AsClaseInterface.CClaseInterface}"/>">Eliminar</a></td>
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
 		<center> 
-		 <button type="submit" value="Crear Nuevo" onClick="location.href='nuevoAsInterface.jsp'" class="btn btn-primary">Crear Nuevo</button>
+		 <button type="submit" value="Crear Nuevo" onClick="location.href='nuevoAsClaseInterface.jsp'" class="btn btn-primary">Crear Nuevo</button>
 		</center> 
 		</div>
 		</section>

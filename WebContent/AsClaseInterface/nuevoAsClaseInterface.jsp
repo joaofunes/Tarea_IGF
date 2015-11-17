@@ -4,33 +4,37 @@
 <%@page import="org.springframework.context.* , org.springframework.context.support.*, org.springframework.web.context.support.*" %>
 <%@page import="sv.edu.ues.igf115.controller.*"%>
 <%@page import="sv.edu.ues.igf115.model.*"%>
-<%@page import="java.util.*" %>
+<%@page import="java.util.Date" %>
 <%@page import="java.text.*" %>
+<%@page import="java.util.*" %>
 
 <%
 ApplicationContext context= WebApplicationContextUtils.getRequiredWebApplicationContext(getServletContext());
+AsClaseInterfaceController asClaseInterfaceController=(AsClaseInterfaceController) context.getBean("AsClaseInterfaceController");
+
+AsClaseController asClaseController=(AsClaseController) context.getBean("AsClaseController");
 CtrlAsInterface ctrlAsInter=(CtrlAsInterface) context.getBean("ctrlAsInter");
 
-List<AsInterface> list= ctrlAsInter.daAsInterface();
+List<AsClaseInterface> list= asClaseInterfaceController.daAsClaseInterface();
+List<AsClase> list1= asClaseController.daAsClase();
+List<AsInterface> list2= ctrlAsInter.daAsInterface();
 
 String crear = request.getParameter("crear");
 System.out.println (crear);
-
+String mensaje = " ";
 if(crear != null && "on".equals(crear)) {
-String dInterface = request.getParameter("dInterface");
-String cUsuario= request.getParameter("cUsuario");
-Integer cInterface = Integer.parseInt(request.getParameter("cInterface"));
-Date fecha = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("fIngreso")); 
+Integer cClaseInterface = Integer.parseInt(request.getParameter("cClaseInterface"));
+int cClase= Short.parseShort(request.getParameter("cClase"));
+int cInterface = Short.parseShort(request.getParameter("cInterface"));
 
-boolean existe = ctrlAsInter.crearAsInterface(cInterface, dInterface, cUsuario, fecha);
-String mensaje;
+boolean existe = asClaseInterfaceController.crearAsClaseInterface(cClaseInterface, cClase, cInterface);
 
 	if (existe) {
-		response.sendRedirect("listAsInterface.jsp");
-		mensaje = "Se creo el  departamento";
+		response.sendRedirect("listAsClaseInterface.jsp");
+		mensaje = "Se creó el Registro";
 	} else {
-		response.sendRedirect("nuevoAsInterface.jsp");
-		mensaje = "Error al guardar el cliente";
+		response.sendRedirect("nuevoAsClaseInterface.jsp");
+		mensaje = "El codigo ya existe";
 	}
 }	
 
@@ -39,7 +43,7 @@ String mensaje;
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Nuevo AsInterface</title>
+<title>Nuevo AsClaseInterface</title>
 <link
 	href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -50,17 +54,17 @@ String mensaje;
 </head>
 <body>
 	<div class="container">
-		<form method="POST" action='nuevoAsInterface.jsp' name="frmAddAtributo" role="form">
-
+		<form method="POST" action='nuevoAsClaseInterface.jsp' name="frmAddAtributo" role="form">
+			
 			<div class="form-group">
-				<label for="cInterface">Código:
-				<select id="cInterface" name="cInterface"  style="width:210%;height:5%">
+				<label for="cClaseInterface">Código:
+				<select id="cClaseInterface" name="cClaseInterface"  style="width:225%;height:5%">
 				<%
 				boolean b;
 				for(int i=1; i<100; i++){
 					b=true;
 					for(int j=0; j<list.size(); j++){
-						if(list.get(j).getCInterface()==i){
+						if(list.get(j).getCClaseInterface()==i){
 							b=false;
 							}
 						}
@@ -73,33 +77,30 @@ String mensaje;
 				</select>
 				</label>
 			</div>
-			
+		
 			<div class="form-group">
-				<label for="dInterface">Descripción:<input
-					class="form-control" type="text" id="dInterface"
-					name="dInterface" 
-					value="<c:out value="${AsInterface.dInterface}" />" required/>
+				<label for="cClase">Clase:
+				<select id="cClase" name="cClase"  style="width:275%;height:5%">
+				<c:forEach items="<%=list1%>" var="AsClase">
+				<option><c:out value="${AsClase.CClase}" /></option>
+				</c:forEach>
+				</select>
 				</label>
 			</div>
 			
 			<div class="form-group">
-				<label for="cUsuario">Usuario:<input
-					class="form-control" type="text" id="cUsuario"
-					name="cUsuario" 
-					value="<c:out value="${AsInterface.cUsuario}" />" required/>
-				</label>
-			</div>
-			
-		   <div class="form-group">
-				<label for="fIngreso">Fecha:<input
-					class="form-control" type="date" id="fIngreso"
-					name="fIngreso" 
-					value="<c:out value="${AsInterface.fIngreso}" />" />
+				<label for="cInterface">Interface:
+				<select id="cInterface" name="cInterface"  style="width:213%;height:5%">
+				<c:forEach items="<%=list2%>" var="AsInterface">
+				<option><c:out value="${AsInterface.CInterface}" /></option>
+				</c:forEach>
+				</select>
 				</label>
 			</div>
 			
 			    <input type="hidden" name="crear" value="on"/>
 			 <button type="submit" class="btn btn-primary">Guardar</button>
+			<label><%=mensaje%></label>
 		</form>
 	</div>
 	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>

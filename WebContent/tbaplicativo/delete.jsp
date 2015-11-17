@@ -76,6 +76,7 @@
 <link href="Resource/bootstrap.css" rel="stylesheet">
 </head>
 <body>
+<center><h2>Eliminar Tb_Aplicativo</h2></center>
 	<div class="container">
 		<form method="POST" action='delete.jsp' name="frmAddAtributo"
 			role="form">

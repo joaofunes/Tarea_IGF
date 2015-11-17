@@ -1,69 +1,106 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package sv.edu.ues.igf115.model;
 
 import java.io.Serializable;
 import java.util.Date;
-
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlRootElement;
 
+/**
+ *
+ * @author Beatriz
+ */
 @Entity
-@Table(name = "as_interface", catalog = "mydb", schema = "")
-public class AsInterface implements Serializable{
-	private static final long serialVersionUID = 1L;	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Basic(optional = false)
-	@Column(name = "c_interface", nullable = false)
-	private Short c_interface;
-	@Column(name = "d_interface", length = 50)
-	private String d_interface;
-	@Column(name = "c_usuario", length = 30)
-	private String c_usuario;
-	@Column(name = "f_ingreso")
-    @Temporal(TemporalType.DATE)
-	private Date fIngreso;
-	
-	public AsInterface(){
-		
-	}
-	public AsInterface(String d_interface, String c_usuario,	Date fIngreso) {
-		super();
-		this.d_interface = d_interface;
-		this.c_usuario = c_usuario;
-		this.fIngreso = fIngreso;
-	}
-	
-	public Short getC_interface() {
-		return c_interface;
-	}
-	public void setC_interface(Short c_interface) {
-		this.c_interface = c_interface;
-	}
-	public String getD_interface() {
-		return d_interface;
-	}
-	public void setD_interface(String d_interface) {
-		this.d_interface = d_interface;
-	}
-	public String getC_usuario() {
-		return c_usuario;
-	}
-	public void setC_usuario(String c_usuario) {
-		this.c_usuario = c_usuario;
-	}
-	public Date getfIngreso() {
-		return fIngreso;
-	}
-	public void setfIngreso(Date fIngreso) {
-		this.fIngreso = fIngreso;
-	}
-	
+@Table(name = "as_interface")
+@XmlRootElement
 
+public class AsInterface implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @Basic(optional = false)
+    @Column(name = "c_interface")
+    private Integer cInterface;
+    @Column(name = "d_interface")
+    private String dInterface;
+    @Column(name = "c_usuario")
+    private String cUsuario;
+    @Column(name = "f_ingreso")
+    @Temporal(TemporalType.DATE)
+    private Date fIngreso;
+
+    public AsInterface() {
+    }
+
+    public AsInterface(Integer cInterface) {
+        this.cInterface = cInterface;
+    }
+
+    public Integer getCInterface() {
+        return cInterface;
+    }
+
+    public void setCInterface(Integer cInterface) {
+        this.cInterface = cInterface;
+    }
+
+    public String getDInterface() {
+        return dInterface;
+    }
+
+    public void setDInterface(String dInterface) {
+        this.dInterface = dInterface;
+    }
+
+    public String getCUsuario() {
+        return cUsuario;
+    }
+
+    public void setCUsuario(String cUsuario) {
+        this.cUsuario = cUsuario;
+    }
+
+    public Date getFIngreso() {
+        return fIngreso;
+    }
+
+    public void setFIngreso(Date fIngreso) {
+        this.fIngreso = fIngreso;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (cInterface != null ? cInterface.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof AsInterface)) {
+            return false;
+        }
+        AsInterface other = (AsInterface) object;
+        if ((this.cInterface == null && other.cInterface != null) || (this.cInterface != null && !this.cInterface.equals(other.cInterface))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "sv.edu.ues.igf115.AsInterface[ cInterface=" + cInterface + " ]";
+    }
+    
 }

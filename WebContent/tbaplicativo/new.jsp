@@ -16,7 +16,7 @@ System.out.println (crear);
 if(crear != null && "on".equals(crear)) {
 	SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 	 
-	//Integer id = Integer.parseInt(request.getParameter("idDep"));
+	
 	String ctipo = request.getParameter("c_aplicativo");
 	String dtipo = request.getParameter("d_aplicativo");
 	java.util.Date fecha = formatter.parse(request.getParameter("fecha"));
@@ -48,6 +48,7 @@ if(crear != null && "on".equals(crear)) {
 <link href="Resource/bootstrap.css" rel="stylesheet">
 </head>
 <body>
+<center><h2>Nuevo Tb_Aplicativo</h2></center>
 	<div class="container">
 		<form method="POST" action='new.jsp' name="frmAddAtributo" role="form">
 
@@ -69,14 +70,20 @@ if(crear != null && "on".equals(crear)) {
 					value="<c:out value="${tb_aplicativo.d_aplicativo}" />" />
 				</label>
 			</div>
-			
+	 	
 			<div class="form-group">
 				<label for="fecha"> fecha de ingreso:<input
 					class="form-control" type="text" id="fecha"
 					name="fecha" 
-					value="<c:out value="${tb_aplicativo.f_ingreso}" />" />
+					value="<c:out value="${tb_aplicativo.f_ingreso}" />" size=8 />
 				</label>
 			</div>
+			
+		<!--  	<input type="date" name="cumpleanios" step="1" min="2013-01-01" 
+		max="2013-12-31" value="<?php echo date("Y-m-d");?>">
+-->
+			
+			
 			    <input type="hidden" name="crear" value="on"/>
 			 <input type="submit" value="Ingresar"/>
 		</form>

@@ -10,7 +10,7 @@ import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import sv.edu.ues.igf115.model.AsClase;
+import sv.edu.ues.igf115.model.*;
 import sv.edu.ues.igf115.utilidades.HibernateUtils;
 
 @Repository
@@ -94,9 +94,10 @@ public class AsClaseDao {
 		sesion = sessionFactory.openSession();
 //		Query query = sesion.getNamedQuery("Departamentos.findByNombreDep");
 //		query.setParameter("nombreDep", nombre);
-		Query query = sesion.createQuery("Select u from AsClase u where u.cClase =:idTipo");
+		Query query = sesion.createQuery("Select u from AsClase u where u.cClase=:idTipo");
 		query.setParameter("idTipo", nombre);
 		AsClase asClase = (AsClase) query.uniqueResult();
 		sesion.close();
 		return asClase;
-	}}
+	}
+}

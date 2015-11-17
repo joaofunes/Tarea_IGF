@@ -17,20 +17,20 @@ String crear = request.getParameter("crear");
 AsInterface asInterface = null;
 
 String mensaje;
-short id= 0;
-short isd=0;
-short codigo=0;
+Integer id= 0;
+Integer isd=0;
+Integer codigo=0;
 String descripcion="";
 String usuario="";
 Date fecha;
 
 	if (crear != null && "on".equals(crear)) {
-		id = Short.parseShort(request.getParameter("codigo"));		
+		id = Integer.parseInt(request.getParameter("codigo"));		
 		asInterface = ctrolAsInte.daAsInterfaceById(id);
-		asInterface.setD_interface(request.getParameter("descripcion"));
-		asInterface.setC_usuario(request.getParameter("usuario"));
+		asInterface.setDInterface(request.getParameter("descripcion"));
+		asInterface.setCUsuario(request.getParameter("usuario"));
 		fecha = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("fecha")); 
-		asInterface.setfIngreso(fecha);
+		asInterface.setFIngreso(fecha);
 		boolean existe = ctrolAsInte.update(asInterface);
 		if (existe) {
 			response.sendRedirect("listAsInterface.jsp");
@@ -40,12 +40,12 @@ Date fecha;
 			mensaje = "Error al guardar el TbTipoAtributo";
 		}
 	} else {
-		isd = Short.parseShort(request.getParameter("userId"));
+		isd = Integer.parseInt(request.getParameter("userId"));
 		asInterface= ctrolAsInte.daAsInterfaceById(isd);
-		codigo = asInterface.getC_interface();
-		descripcion = asInterface.getD_interface();
-		usuario = asInterface.getC_usuario();
-		fecha = asInterface.getfIngreso();
+		codigo = asInterface.getCInterface();
+		descripcion = asInterface.getDInterface();
+		usuario = asInterface.getCUsuario();
+		fecha = asInterface.getFIngreso();
 	}
 %>
 
@@ -53,7 +53,7 @@ Date fecha;
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Editar TbTipoAtributo</title>
+<title>Editar AsInterface</title>
 <link
 	href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -70,30 +70,30 @@ Date fecha;
 			<div class="form-group">
 				<label for="personid"> Código: <input
 					class="form-control" id="codigo" name="codigo" readonly="readonly"
-					value=<c:out value="<%=asInterface.getC_interface()%>" /> />
+					value=<c:out value="<%=asInterface.getCInterface()%>" /> />
 				</label>
 			</div>
 			<div class="form-group">
 				<label for="name"> Descripción:<input
 					class="form-control" type="text" id="descripcion"
-					name="descripcion" value="<c:out value="<%=asInterface.getD_interface()%>" />" />
+					name="descripcion" value="<c:out value="<%=asInterface.getDInterface()%>" />" />
 				</label>
 			</div>
 			<div class="form-group">
 				<label for="name"> Usuario:<input
 					class="form-control" type="text" id="usuario"
-					name="usuario" value="<c:out value="<%=asInterface.getC_usuario()%>" />" />
+					name="usuario" value="<c:out value="<%=asInterface.getCUsuario()%>" />" />
 				</label>
 			</div>
 			<div class="form-group">
 				<label for="name"> Fecha:<input
 					class="form-control" type="text" id="fecha"
-					name="fecha" value="<c:out value="<%=asInterface.getfIngreso()%>" />" />
+					name="fecha" value="<c:out value="<%=asInterface.getFIngreso()%>" />" />
 				</label>
 			</div>
 			
 			 <input type="hidden" name="crear" value="on"/>
-			 <input type="submit" value="Update"/>
+			  <button type="submit" class="btn btn-primary">Actualizar</button>
 		</form>
 	</div>
 	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>

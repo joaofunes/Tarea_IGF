@@ -22,12 +22,22 @@
 		<ul>
 			<li><a class="current" href="#" onclick="javascript:anchodiv();">Inicio</a></li>
 			<li>
-				<a href="#">Catalogos</a>
+				<a href="#">AsClaseInterface</a>
 				<ul>
-					<li><a href="/IGF2015v1/Cliente/listaTipoCliente.jsp">Tipo de Cliente</a></li>
-					<li><a href="/IGF2015v1/Establecimiento/CreaEst.html">Establecimiento</a></li>
-					<li><a href="/IGF2015v1/Pais/Creapais.html">Pais</a></li>
-					<li><a href="/IGF2015v1/Concepto/Lista.jsp">Concepto</a></li>
+					<li><a href="/IGF2015v1/AsClaseInterface/listAsClaseInterface.jsp">As Clase Interface</a></li>					
+				</ul>
+			</li>
+			
+			<li>
+				<a href="#">AsInterface</a>
+				<ul>
+					<li><a href="/IGF2015v1/AsInterface/listAsInterface.jsp">As Interface</a></li>					
+				</ul>
+			</li>
+			<li>
+				<a href="#">AsInterfaceImplementa</a>
+				<ul>
+					<li><a href="/IGF2015v1/AsInterfaceImplementa/listAsInterfaceImplementa.jsp">As Interface Implementa</a></li>					
 				</ul>
 			</li>
 			<li>
@@ -55,6 +65,26 @@
 					<li><a href="/IGF2015v1/asmetodo/asmetodo.jsp">ListadoAsAtributo</a></li>
 				</ul>
 			</li>
+			
+			<li>
+				<a href="#">asclase</a>
+				<ul>
+					<li><a href="/IGF2015v1/asclase/lista.jsp">As Clase</a></li>					
+				</ul>
+			</li>
+			<li>
+				<a href="#">tbaplicativo</a>
+				<ul>
+					<li><a href="/IGF2015v1/tbaplicativo/lista.jsp">Tb Aplicativo</a></li>					
+				</ul>
+			</li>
+			<li>
+				<a href="#">tbtipoclase</a>
+				<ul>
+					<li><a href="/IGF2015v1/tbtipoclase/lista.jsp">Tb Tipo Clase</a></li>					
+				</ul>
+			</li>
+			
 			<li><a href="j_spring_security_logout">Cerrar sesión</a></li>
 		</ul>
 	</div>

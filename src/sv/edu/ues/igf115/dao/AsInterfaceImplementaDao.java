@@ -8,11 +8,15 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import sv.edu.ues.igf115.model.AsInterfaceImplementa;
 import sv.edu.ues.igf115.utilidades.HibernateUtils;
 
+@Repository
 public class AsInterfaceImplementaDao {
+	
+	@Autowired
 private HibernateUtils hibernateUtil;
 	
 	
@@ -92,7 +96,7 @@ private HibernateUtils hibernateUtil;
 		try {
 
 			sesion = sessionFactory.openSession();
-			Query query= sesion.createQuery("Select asinter from AsInterfaceImplementa asinter where asinter.c_interface=:id");
+			Query query= sesion.createQuery("Select asinter from AsInterfaceImplementa asinter where asinter.cInterfaceImplementa=:id");
 			query.setParameter("id", id);
 			AsInterfaceImplementa asInterImplementa = (AsInterfaceImplementa) query.uniqueResult();
 			sesion.close();

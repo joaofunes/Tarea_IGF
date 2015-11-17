@@ -77,6 +77,7 @@
 <link href="Resource/bootstrap.css" rel="stylesheet">
 </head>
 <body>
+<center><h2>Eliminar Tb_Tipo_Clase</h2></center>
 	<div class="container">
 		<form method="POST" action='delete.jsp' name="frmAddAtributo"
 			role="form">
@@ -92,7 +93,21 @@
 				</label>
 			</div>
 			
+			<div class="form-group">
+				<label for="d_aplicativo"> nombre aplicativo:<input
+					class="form-control" type="text" id="d_aplicativo"
+					name="d_aplicativo" 
+					value="<c:out value="<%=tbTipoClase.getD_tipo_clase()%>" />" />
+				</label>
+			</div>
 			
+			<div class="form-group">
+				<label for="f_ingreso"> fecha de ingreso:<input
+					class="form-control" type="text" id="f_ingreso"
+					name="f_ingreso" 
+					value="<c:out value="<%=tbTipoClase.getF_ingreso()%>" />" />
+				</label>
+			</div>
 			
 			
 			<td></td>

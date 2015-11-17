@@ -48,6 +48,7 @@ if(crear != null && "on".equals(crear)) {
 <link href="Resource/bootstrap.css" rel="stylesheet">
 </head>
 <body>
+<center><h2>Nuevo Tb_Tipo_Clase</h2></center>
 	<div class="container">
 		<form method="POST" action='new.jsp' name="frmAddAtributo" role="form">
 
